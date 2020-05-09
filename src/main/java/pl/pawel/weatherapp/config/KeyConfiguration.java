@@ -8,9 +8,9 @@ import org.springframework.context.annotation.Configuration;
 public class KeyConfiguration {
 
     @Value("${weather-app.key}")
-    private static String keyValue;
+    private String keyValue;
 
-    public String getKeyValue(){
+    public  String getKeyValue(){
         return keyValue;
     }
 }

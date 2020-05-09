@@ -1,11 +1,14 @@
 package pl.pawel.weatherapp.model.response;
 
+import lombok.Getter;
 import pl.pawel.weatherapp.model.*;
+
+import java.util.Arrays;
 
 public class CurrentWeatherResponse {
 
     Coordinate coord;
-    Weather weather;
+    Weather[] weather;
     String base;
     Main main;
     Long visibility;
@@ -18,4 +21,74 @@ public class CurrentWeatherResponse {
     String name;
     int cod;
 
+    public Coordinate getCoord() {
+        return coord;
+    }
+
+    public Weather[] getWeather() {
+        return weather;
+    }
+
+    public String getBase() {
+        return base;
+    }
+
+    public Main getMain() {
+        return main;
+    }
+
+    public Long getVisibility() {
+        return visibility;
+    }
+
+    public Wind getWind() {
+        return wind;
+    }
+
+    public Clouds getClouds() {
+        return clouds;
+    }
+
+    public Long getDt() {
+        return dt;
+    }
+
+    public Sys getSys() {
+        return sys;
+    }
+
+    public Long getTimezone() {
+        return timezone;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCod() {
+        return cod;
+    }
+
+    @Override
+    public String toString() {
+        return "CurrentWeatherResponse{" +
+                "coord=" + coord +
+                ", weather=" + Arrays.toString(weather) +
+                ", base='" + base + '\'' +
+                ", main=" + main +
+                ", visibility=" + visibility +
+                ", wind=" + wind +
+                ", clouds=" + clouds +
+                ", dt=" + dt +
+                ", sys=" + sys +
+                ", timezone=" + timezone +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", cod=" + cod +
+                '}';
+    }
 }
