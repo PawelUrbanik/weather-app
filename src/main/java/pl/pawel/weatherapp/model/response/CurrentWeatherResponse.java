@@ -20,6 +20,7 @@ public class CurrentWeatherResponse {
     Long id;
     String name;
     int cod;
+    String convertedDate;
 
     public Coordinate getCoord() {
         return coord;
@@ -71,6 +72,14 @@ public class CurrentWeatherResponse {
 
     public int getCod() {
         return cod;
+    }
+
+    public String getConvertedDate() {
+        return convertedDate;
+    }
+
+    public void setConvertedDate(String convertedDate) {
+        this.convertedDate = convertedDate;
     }
 
     @Override
