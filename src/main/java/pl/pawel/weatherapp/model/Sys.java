@@ -1,8 +1,17 @@
 package pl.pawel.weatherapp.model;
 
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+@NoArgsConstructor
 public class Sys {
-    int type;
+
+    @Id
     Long id;
+    int type;
     Double message;
     String country;
     Long sunrise;

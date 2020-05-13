@@ -1,23 +1,38 @@
 package pl.pawel.weatherapp.model.response;
 
 import lombok.Getter;
+import org.hibernate.annotations.ManyToAny;
 import pl.pawel.weatherapp.model.*;
 
+import javax.annotation.Resource;
+import javax.persistence.*;
 import java.util.Arrays;
 
+@Entity
 public class CurrentWeatherResponse {
 
-    Coordinate coord;
+    public CurrentWeatherResponse() {
+    }
+    @Id
+    Long id;
+    @Resource(name = "coordinate")
+    @OneToOne
+    private Coordinate coord;
+    @ManyToOne
     Weather[] weather;
     String base;
+    @OneToOne
     Main main;
     Long visibility;
+    @OneToOne
     Wind wind;
+    @OneToOne
     Clouds clouds;
     Long dt;
+    @OneToOne
     Sys sys;
     Long timezone;
-    Long id;
+
     String name;
     int cod;
     String convertedDate;
