@@ -3,6 +3,7 @@ package pl.pawel.weatherapp.model;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @NoArgsConstructor
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 public class Main {
 
     @Id
+    @GeneratedValue()
     Long id;
     Double temp;
     Double feels_like;
@@ -17,6 +19,38 @@ public class Main {
     Double temp_max;
     int pressure;
     int humidity;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setTemp(Double temp) {
+        this.temp = temp;
+    }
+
+    public void setFeels_like(Double feels_like) {
+        this.feels_like = feels_like;
+    }
+
+    public void setTemp_min(Double temp_min) {
+        this.temp_min = temp_min;
+    }
+
+    public void setTemp_max(Double temp_max) {
+        this.temp_max = temp_max;
+    }
+
+    public void setPressure(int pressure) {
+        this.pressure = pressure;
+    }
+
+    public void setHumidity(int humidity) {
+        this.humidity = humidity;
+    }
 
     public Double getTemp() {
         return temp;
