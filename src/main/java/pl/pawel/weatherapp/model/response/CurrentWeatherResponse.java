@@ -1,6 +1,7 @@
 package pl.pawel.weatherapp.model.response;
 
 import org.hibernate.annotations.Cascade;
+import org.springframework.context.annotation.Scope;
 import pl.pawel.weatherapp.model.*;
 
 import javax.annotation.Resource;
@@ -10,11 +11,13 @@ import java.util.Arrays;
 import java.util.List;
 
 @Entity
+@Scope("request")
 public class CurrentWeatherResponse {
 
     public CurrentWeatherResponse() {
     }
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     @Resource(name = "coordinate")
     @OneToOne(cascade = CascadeType.ALL)
@@ -37,6 +40,9 @@ public class CurrentWeatherResponse {
     String name;
     int cod;
     String convertedDate;
+
+    public CurrentWeatherResponse(CurrentWeatherResponse weatherResponse) {
+    }
 
     public Long getId() {
         return id;

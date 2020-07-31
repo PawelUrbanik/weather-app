@@ -20,7 +20,7 @@
                 <a class="nav-link" th:href="@{/}">Temperatura obecna <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Historyczna</a>
+                <a class="nav-link" th:href="@{/historic}">Historyczna</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Wyłączone</a>
@@ -31,11 +31,12 @@
 <br>
 <div class="container" style="margin-top: 45px">
     <main role="main" class="container">
-    <div class="container">
+    <div class="container center" style="margin-top: 10px; margin-bottom: 20px; padding-left: 150px">
         <form th:action="@{/}" method="post">
-            <input type="text" name="cityName" id="cityName">
+            <input type="text" size="60" name="cityName" id="cityName">
             <input type="submit" value="Wyszukaj">
         </form>
+
     </div>
     <table class="table table-bordered">
         <thead class="thead-dark">

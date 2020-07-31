@@ -4,6 +4,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import pl.pawel.weatherapp.model.response.CurrentWeatherResponse;
 
+import java.util.Optional;
+
 @Repository
 public interface CurrentWeatherRepository extends JpaRepository<CurrentWeatherResponse, Long> {
+
+    Optional<CurrentWeatherResponse> findCurrentWeatherResponseByName(String name);
 }
