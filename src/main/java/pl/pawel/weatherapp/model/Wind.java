@@ -12,9 +12,9 @@ public class Wind {
 
     @Id
     @GeneratedValue()
-    Long id;
-    float speed;
-    int deg;
+    private Long id;
+    private float speed;
+    private int deg;
 
     public Long getId() {
         return id;

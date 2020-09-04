@@ -14,9 +14,9 @@ import javax.persistence.Id;
 public class Clouds {
     @Id
     @GeneratedValue()
-    Long id;
+    private Long id;
     @Column(name = "all_clouds")
-    int all;
+    private int all;
 
     @Override
     public String toString() {

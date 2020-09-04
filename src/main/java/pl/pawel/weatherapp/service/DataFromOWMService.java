@@ -11,9 +11,9 @@ import pl.pawel.weatherapp.model.response.CurrentWeatherResponse;
 @Service
 public class DataFromOWMService {
 
-    KeyConfiguration keyConfiguration;
+    private KeyConfiguration keyConfiguration;
     private Gson gson;
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
     public DataFromOWMService(KeyConfiguration keyConfiguration) {
         this.keyConfiguration = keyConfiguration;

@@ -18,28 +18,28 @@ public class CurrentWeatherResponse {
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     @Resource(name = "coordinate")
     @OneToOne(cascade = CascadeType.ALL)
     private Coordinate coord;
     @OneToMany(cascade = CascadeType.ALL)
-    List<Weather> weather;
-    String base;
+    private List<Weather> weather;
+    private String base;
     @OneToOne(cascade = CascadeType.ALL)
-    Main main;
-    Long visibility;
+    private Main main;
+    private Long visibility;
     @OneToOne(cascade = CascadeType.ALL)
-    Wind wind;
+    private Wind wind;
     @OneToOne(cascade = CascadeType.ALL)
-    Clouds clouds;
-    Long dt;
+    private Clouds clouds;
+    private Long dt;
     @OneToOne(cascade = CascadeType.ALL)
-    Sys sys;
-    Long timezone;
+    private Sys sys;
+    private Long timezone;
 
-    String name;
-    int cod;
-    String convertedDate;
+    private String name;
+    private int cod;
+    private String convertedDate;
 
     public CurrentWeatherResponse(CurrentWeatherResponse weatherResponse) {
     }

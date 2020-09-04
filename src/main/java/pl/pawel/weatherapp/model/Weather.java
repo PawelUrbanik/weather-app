@@ -13,11 +13,11 @@ public class Weather {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long weather_id;
-    Long id;
-    String main;
-    String description;
-    String icon;
+    private Long weather_id;
+    private Long id;
+    private String main;
+    private String description;
+    private String icon;
 
 
     public Long getWeather_id() {

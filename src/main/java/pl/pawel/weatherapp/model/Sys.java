@@ -13,13 +13,13 @@ public class Sys {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int ids;
-    Long id;
-    int type;
-    Double message;
-    String country;
-    Long sunrise;
-    Long sunset;
+    private int ids;
+    private Long id;
+    private int type;
+    private Double message;
+    private String country;
+    private Long sunrise;
+    private Long sunset;
 
     public int getIds() {
         return ids;

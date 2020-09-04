@@ -12,13 +12,13 @@ public class Main {
 
     @Id
     @GeneratedValue()
-    Long id;
-    Double temp;
-    Double feels_like;
-    Double temp_min;
-    Double temp_max;
-    int pressure;
-    int humidity;
+    private Long id;
+    private Double temp;
+    private Double feels_like;
+    private Double temp_min;
+    private Double temp_max;
+    private int pressure;
+    private int humidity;
 
     public Long getId() {
         return id;

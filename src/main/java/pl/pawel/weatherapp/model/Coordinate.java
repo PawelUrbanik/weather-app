@@ -16,8 +16,8 @@ public class Coordinate {
     @GeneratedValue()
     private Long id;
 
-    Double lon;
-    Double lat;
+    private Double lon;
+    private Double lat;
 
 
     @Override

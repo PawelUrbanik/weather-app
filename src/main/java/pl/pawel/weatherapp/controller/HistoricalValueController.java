@@ -24,7 +24,7 @@ public class HistoricalValueController {
     }
 
     @GetMapping("/save")
-    public void exportToExxcel(HttpServletResponse response) throws IOException {
+    public void exportToExcel(HttpServletResponse response) throws IOException {
 
         final String filename = "weather_new.xlsx";
         List<CurrentWeatherResponse> currentWeatherResponses = currentWeatherRepository.findAll();
