@@ -7,8 +7,6 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
 import pl.pawel.weatherapp.model.response.CurrentWeatherResponse;
 
 import javax.servlet.ServletOutputStream;
@@ -19,7 +17,7 @@ import java.util.List;
 public class ExcelFileExporter {
 
 
-    private String[] HEADERS = { "Lokalizacja", "Temperatura"};
+    private String[] HEADERS = { "Lokalizacja", "Temperatura", "Data", "Godzina aktualizacji"};
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
     private XSSFCellStyle xssfCellStyle;
@@ -38,6 +36,8 @@ public class ExcelFileExporter {
 
         sheet.setColumnWidth(0, 5000);
         sheet.setColumnWidth(1, 5000);
+        sheet.setColumnWidth(2, 5000);
+        sheet.setColumnWidth(3, 5000);
 
         xssfCellStyle.setBorderBottom(BorderStyle.MEDIUM);
         xssfCellStyle.setBorderLeft(BorderStyle.MEDIUM);
@@ -55,6 +55,14 @@ public class ExcelFileExporter {
         cell = row.createCell(1);
         cell.setCellStyle(xssfCellStyle);
         cell.setCellValue(HEADERS[1]);
+
+        cell = row.createCell(2);
+        cell.setCellStyle(xssfCellStyle);
+        cell.setCellValue(HEADERS[2]);
+
+        cell = row.createCell(3);
+        cell.setCellStyle(xssfCellStyle);
+        cell.setCellValue(HEADERS[3]);
 
         xssfFont.setBold(false);
     }
@@ -77,6 +85,15 @@ public class ExcelFileExporter {
              cell = row.createCell(1);
              cell.setCellStyle(xssfCellStyle);
              cell.setCellValue(weatherResponse.getMain().getTemp());
+
+             String convertedDateTime = weatherResponse.getConvertedDate();
+             cell = row.createCell(2);
+             cell.setCellStyle(xssfCellStyle);
+             cell.setCellValue(convertedDateTime.substring(0, convertedDateTime.lastIndexOf(" ")));
+
+             cell = row.createCell(3);
+             cell.setCellStyle(xssfCellStyle);
+             cell.setCellValue(convertedDateTime.substring(convertedDateTime.lastIndexOf(" "), convertedDateTime.length()));
 
              countRow++;
          }
