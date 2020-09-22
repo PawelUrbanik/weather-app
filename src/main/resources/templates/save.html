@@ -9,8 +9,19 @@
 
 </head>
 <body>
-<form th:action="@{/historic/save}" method="get">
-    <input type="submit" value="Zapisz plik">
+<form th:action="@{/historic/save}" method="post">
+<div class="col-md-12">
+    <h3>Wybierz miasto</h3>
+    <div class="well" >
+        <li th:each="city : ${cities}" class="checkbox-inline" >
+            <input type="checkbox" name="cities" th:value="${city}">
+            <label th:text="${city}"></label>
+        </li>
+
+        <input type="submit" value="Zapisz plik">
+    </div>
+</div>
+
 </form>
 </body>
 </html>
