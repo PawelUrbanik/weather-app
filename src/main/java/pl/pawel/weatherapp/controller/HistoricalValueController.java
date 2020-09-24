@@ -8,36 +8,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.pawel.weatherapp.model.response.CurrentWeatherResponse;
 import pl.pawel.weatherapp.repository.CurrentWeatherRepository;
+import pl.pawel.weatherapp.service.CurrentWeatherResponseService;
 import pl.pawel.weatherapp.service.ExcelFileExporter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Stream;
 
 @Controller
 @RequestMapping("/historic")
 public class HistoricalValueController {
 
     CurrentWeatherRepository currentWeatherRepository;
+    CurrentWeatherResponseService currentWeatherResponseService;
     ExcelFileExporter excelFileExporter;
 
-    public HistoricalValueController(CurrentWeatherRepository currentWeatherRepository){
+    public HistoricalValueController(CurrentWeatherRepository currentWeatherRepository, CurrentWeatherResponseService currentWeatherResponseService){
         this.currentWeatherRepository = currentWeatherRepository;
+        this.currentWeatherResponseService = currentWeatherResponseService;
 
     }
 
     @PostMapping("/save")
     public void exportToExcel(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-
-        System.out.println(Arrays.toString(request.getParameterValues("cities")));
-
+        List<String> names = Arrays.asList(request.getParameterValues("cities"));
         final String filename = "weather_new.xlsx";
-        //TODO zmiana z findAll na find by name
-        List<CurrentWeatherResponse> currentWeatherResponses = currentWeatherRepository.findAll();
+        List<CurrentWeatherResponse> currentWeatherResponses = currentWeatherResponseService.findAllByCities(names);
+
         response.setContentType("application/octet-stream");
         response.setHeader(HttpHeaders.CONTENT_DISPOSITION,
                 "attachment; filename=\"" + filename + "\"");
@@ -45,7 +45,6 @@ public class HistoricalValueController {
         ExcelFileExporter excelFileExporter = new ExcelFileExporter();
 
         excelFileExporter.export(response, currentWeatherResponses);
-
     }
 
 
