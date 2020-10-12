@@ -15,20 +15,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Stream;
 
 @Controller
 @RequestMapping("/historic")
 public class HistoricalValueController {
 
-    CurrentWeatherRepository currentWeatherRepository;
     CurrentWeatherResponseService currentWeatherResponseService;
-    ExcelFileExporter excelFileExporter;
 
-    public HistoricalValueController(CurrentWeatherRepository currentWeatherRepository, CurrentWeatherResponseService currentWeatherResponseService){
-        this.currentWeatherRepository = currentWeatherRepository;
+    public HistoricalValueController(CurrentWeatherResponseService currentWeatherResponseService){
         this.currentWeatherResponseService = currentWeatherResponseService;
-
     }
 
     @PostMapping("/save")
@@ -52,7 +47,7 @@ public class HistoricalValueController {
 
     @GetMapping()
     public String historicalValue(Model model){
-        Set<String> cities = currentWeatherRepository.findAllCities();
+        Set<String> cities = currentWeatherResponseService.findAllCities();
         model.addAttribute("cities", cities);
         return "save";
     }
