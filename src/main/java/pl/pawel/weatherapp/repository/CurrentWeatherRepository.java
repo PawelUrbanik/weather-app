@@ -14,6 +14,7 @@ import java.util.Set;
 public interface CurrentWeatherRepository extends JpaRepository<CurrentWeatherResponse, Long>, JpaSpecificationExecutor {
 
     Optional<List<CurrentWeatherResponse>> findAllCurrentWeatherResponseByName(String name);
+    Optional<CurrentWeatherResponse> findFirstByNameOrderByConvertedDateDesc(String name);
 
     @Query(nativeQuery = true, value =
             "select cwr.name as name from CURRENT_WEATHER_RESPONSE cwr")

@@ -23,7 +23,13 @@ public class CurrentWeatherResponseService {
 
 
     public void addCurrentWeatherResponse(CurrentWeatherResponse weatherResponse) {
-        currentWeatherRepository.save(weatherResponse);
+        Optional<CurrentWeatherResponse> lastValue = currentWeatherRepository.findFirstByNameOrderByConvertedDateDesc(weatherResponse.getName());
+        if (lastValue.isPresent() && weatherResponse.getDt().equals(lastValue.get().getDt())) {
+//            System.out.println("Not saved");
+        }else {
+            currentWeatherRepository.save(weatherResponse);
+//            System.out.println("Saved");
+        }
     }
 
     public void formatDate(CurrentWeatherResponse currentWeatherResponse) {
