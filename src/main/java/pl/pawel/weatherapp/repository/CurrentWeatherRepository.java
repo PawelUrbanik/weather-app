@@ -15,6 +15,7 @@ public interface CurrentWeatherRepository extends JpaRepository<CurrentWeatherRe
 
     Optional<List<CurrentWeatherResponse>> findAllCurrentWeatherResponseByName(String name);
     Optional<CurrentWeatherResponse> findFirstByNameOrderByConvertedDateDesc(String name);
+    Optional<List<CurrentWeatherResponse>> findAllByNameAndDtBetween(String name, Long startDate, Long endDate);
 
     @Query(nativeQuery = true, value =
             "select cwr.name as name from CURRENT_WEATHER_RESPONSE cwr")

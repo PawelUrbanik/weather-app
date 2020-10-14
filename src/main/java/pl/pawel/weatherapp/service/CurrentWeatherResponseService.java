@@ -4,13 +4,16 @@ import org.springframework.stereotype.Service;
 import pl.pawel.weatherapp.model.response.CurrentWeatherResponse;
 import pl.pawel.weatherapp.repository.CurrentWeatherRepository;
 
+import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
 
 @Service
 public class CurrentWeatherResponseService {
@@ -50,5 +53,19 @@ public class CurrentWeatherResponseService {
 
     public Set<String> findAllCities() {
         return currentWeatherRepository.findAllCities();
+    }
+
+    public List<CurrentWeatherResponse> findAllByCitiesBetwenStartDateAndEndDate(List<String> names, String startDatetime, String endDatetime) {
+        LocalDateTime localStartDateTime = LocalDateTime.parse(startDatetime);
+        Timestamp startTimestamp = Timestamp.valueOf(localStartDateTime);
+        LocalDateTime localEndDateTime = LocalDateTime.parse(endDatetime);
+        Timestamp endTimestamp = Timestamp.valueOf(localEndDateTime);
+        List<CurrentWeatherResponse> resultSet = new ArrayList<>();
+        names.forEach(name -> {
+            Optional<List<CurrentWeatherResponse>> responseFromDB = currentWeatherRepository.findAllByNameAndDtBetween(name, startTimestamp.getTime()/1000L, endTimestamp.getTime()/1000L);
+            responseFromDB.ifPresent(e -> resultSet.addAll(responseFromDB.get()));
+        });
+        resultSet.forEach(System.out::println);
+        return resultSet;
     }
 }
